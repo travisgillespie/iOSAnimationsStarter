@@ -161,10 +161,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
         label.text = messages[index]
         
         //changed transition to TransitionFlipFromBottom... this transition presents the banner smooth/clean
-        UIView.transitionWithView(status, duration: 0.33,
-            options: [.CurveEaseOut, .TransitionFlipFromBottom],
-            animations: {
-                self.status.hidden = false
+        UIView.transitionWithView(status, duration: 0.33, options: [.CurveEaseOut, .TransitionFlipFromBottom], animations: {
+            self.status.hidden = false
             }, completion: {_ in
                 //transition completion
                 delay(seconds: 0.2) {
@@ -172,6 +170,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                         self.removeMessage(index: index)
                     } else {
                         //reset form
+                        self.resetForm()
                     }
                 }
                 
@@ -190,5 +189,34 @@ class ViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
+    func resetForm(){
+        UIView.transitionWithView(status, duration: 0.2, options: [.TransitionFlipFromTop], animations: {
+            self.status.hidden = true
+            self.status.center = self.statusPosition
+            }, completion: nil)
+        
+        UIView.animateWithDuration(0.2, delay: 0.0, options: [], animations: {
+            self.spinner.center = CGPoint(x: -20.0, y: 16.0)
+            self.spinner.alpha = 0.0
+            self.loginButton.backgroundColor = UIColor(red: 0.63, green: 0.84, blue: 0.35, alpha: 1.0)
+            
+            //              can reverse login button animations here... but placing them in their own method to create a visual that catches the eye
+            
+            //                self.loginButton.bounds.size.width -= 80.0
+            //                self.loginButton.center.y -= 60.0
+            
+            }, completion: nil)
+        
+        //reverse login button animation 1
+        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: {
+            self.loginButton.bounds.size.width -= 80.0
+            }, completion: nil)
+        
+        //reverse login button animation 2
+        UIView.animateWithDuration(0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+            self.loginButton.center.y -= 60.0
+            }, completion: nil)
+        
+    }
     
 }
