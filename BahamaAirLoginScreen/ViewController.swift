@@ -127,7 +127,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
         //1st user interaction animation: button grows & bounces
         UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: {
             self.loginButton.bounds.size.width += 80.0
-            }, completion: nil)
+            }, completion: {_ in
+                self.showMessage(index: 1)
+        })
         
         //2nd user interaction animation: button moves down 60 points
         UIView.animateWithDuration(0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
@@ -150,5 +152,17 @@ class ViewController: UIViewController, UITextFieldDelegate {
         nextField.becomeFirstResponder()
         return true
     }
+    
+    func showMessage(index index: Int){
+        label.text = messages[index]
+        
+        UIView.transitionWithView(status, duration: 0.33, options: [.CurveEaseOut, .TransitionCurlDown], animations: {
+            self.status.hidden = false
+            }, completion: {_ in
+                //transition completion
+                
+        })
+    }
+    
     
 }
