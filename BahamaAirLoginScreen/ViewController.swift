@@ -42,23 +42,23 @@ class ViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         //set up the UI
-        loginButton.layer.cornerRadius = 8.0
-        loginButton.layer.masksToBounds = true
-        
-        spinner.frame = CGRect(x: -20.0, y: 6.0, width: 20.0, height: 20.0)
-        spinner.startAnimating()
-        spinner.alpha = 0.0
-        loginButton.addSubview(status)
-        
-        status.hidden = true
-        status.center = loginButton.center
-        view.addSubview(status)
-        
-        label.frame = CGRect(x: 0.0, y: 0.0, width: status.frame.size.width, height: status.frame.size.height)
-        label.font = UIFont(name: "HelveticaNeue", size: 18.0)
-        label.textColor = UIColor(red: 0.89, green: 0.38, blue: 0.0, alpha: 1.0)
-        label.textAlignment = .Center
-        status.addSubview(label)
+//        loginButton.layer.cornerRadius = 8.0
+//        loginButton.layer.masksToBounds = true
+//        
+//        spinner.frame = CGRect(x: -20.0, y: 6.0, width: 20.0, height: 20.0)
+//        spinner.startAnimating()
+//        spinner.alpha = 0.0
+//        loginButton.addSubview(status)
+//        
+//        status.hidden = true
+//        status.center = loginButton.center
+//        view.addSubview(status)
+//        
+//        label.frame = CGRect(x: 0.0, y: 0.0, width: status.frame.size.width, height: status.frame.size.height)
+//        label.font = UIFont(name: "HelveticaNeue", size: 18.0)
+//        label.textColor = UIColor(red: 0.89, green: 0.38, blue: 0.0, alpha: 1.0)
+//        label.textAlignment = .Center
+//        status.addSubview(label)
         
     }
     

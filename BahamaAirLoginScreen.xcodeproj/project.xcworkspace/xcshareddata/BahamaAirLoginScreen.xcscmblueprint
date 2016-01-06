@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "25029452D91830AB7213014492A0ECD7E0421C59",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "25029452D91830AB7213014492A0ECD7E0421C59" : 0,
+    "3EBF09DA02AD9547D8B513A3EB91A1C4719ADB2D" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EB6AE35D-466E-4D4F-920E-41A752CFD5AD",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "25029452D91830AB7213014492A0ECD7E0421C59" : "animations\/",
+    "3EBF09DA02AD9547D8B513A3EB91A1C4719ADB2D" : ".."
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "BahamaAirLoginScreen",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "BahamaAirLoginScreen.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/travisgillespie\/iOSAnimationsStarter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "25029452D91830AB7213014492A0ECD7E0421C59"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/travisgillespie\/Animations.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "3EBF09DA02AD9547D8B513A3EB91A1C4719ADB2D"
+    }
+  ]
+}
