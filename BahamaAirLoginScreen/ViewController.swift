@@ -94,7 +94,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     y: CGFloat(direction.rawValue * 50))
                 moveLabel(arrivingTo, text: data.arrivingTo,
                     offset: offsetArriving)
-                
+                bannerLabelTransition(label: flightStatus, text: data.flightStatus, direction: direction)
                 
             } else {
                 bgImageView.image = UIImage(named: data.weatherImageName)
@@ -169,7 +169,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
     }
     
-    
     func moveLabel(label: UILabel, text: String, offset: CGPoint) {
         
         let auxLabel = UILabel(frame: label.frame)
@@ -204,4 +203,37 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 label.transform = CGAffineTransformIdentity
         })
     }
+    
+    //challenge 1: banner animation
+    func bannerLabelTransition(label label: UILabel, text: String, direction: AnimationDirection){
+        let auxLabel = UILabel(frame: label.frame)
+        auxLabel.text = text
+        auxLabel.font = label.font
+        auxLabel.textAlignment = label.textAlignment
+        auxLabel.textColor = label.textColor
+        
+        auxLabel.backgroundColor = UIColor.clearColor()
+        
+        let auxLabelOffset = CGFloat(direction.rawValue) *
+            label.frame.size.height/2.0
+        
+        auxLabel.transform = CGAffineTransformConcat(
+            CGAffineTransformMakeScale(1.0, 0.1),
+            CGAffineTransformMakeTranslation(0.0, auxLabelOffset))
+        
+        label.superview!.addSubview(auxLabel)
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseOut, animations: {
+            auxLabel.transform = CGAffineTransformIdentity
+            label.transform = CGAffineTransformConcat(
+                CGAffineTransformMakeScale(1.0, 0.1),
+                CGAffineTransformMakeTranslation(0.0, -auxLabelOffset))
+            }, completion: {_ in
+                label.text = auxLabel.text
+                label.transform = CGAffineTransformIdentity
+                
+                auxLabel.removeFromSuperview()
+        })
+    }
+    
 }
