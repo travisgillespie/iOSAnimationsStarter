@@ -18,7 +18,7 @@ func delay(seconds seconds: Double, completion:()->()){
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
-
+    
     @IBOutlet weak var heading: UILabel!
     @IBOutlet weak var username: UITextField!
     @IBOutlet weak var password: UITextField!
@@ -79,25 +79,25 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         UIView.animateWithDuration(0.5, delay: 0.3, options: [], animations: {
             self.username.center.x += self.view.bounds.width
-        }, completion: nil)
+            }, completion: nil)
         
-        UIView.animateWithDuration(0.5, delay: 0.4, options: [], animations: {
-                self.password.center.x += self.view.bounds.width
+        UIView.animateWithDuration(0.5, delay: 0.4, options: [.Repeat, .Autoreverse], animations: {
+            self.password.center.x += self.view.bounds.width
             }, completion: nil)
     }
     
     
-      // MARK: further methods
+    // MARK: further methods
     @IBAction func login(sender: UIButton) {
         view.endEditing(true)
     }
     
-      // MARK: UITextFieldDelegate
+    // MARK: UITextFieldDelegate
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         let nextField = (textField === username) ? password : username
         nextField.becomeFirstResponder()
         return true
     }
-
+    
 }
 
