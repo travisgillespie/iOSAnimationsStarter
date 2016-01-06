@@ -71,9 +71,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 fadeImageView(bgImageView,
                     toImage: UIImage(named: data.weatherImageName)!,
                     showEffects: data.showWeatherEffects)
+                
+                let direction: AnimationDirection = data.isTakingOff ?
+                    .Positive : .Negative
+                
+                cubeTransition(label: flightNr, text: data.flightNr,
+                    direction: direction)
+                cubeTransition(label: gateNr, text: data.gateNr,
+                    direction: direction)
+                
             } else {
                 bgImageView.image = UIImage(named: data.weatherImageName)
                 snowView.hidden = !data.showWeatherEffects
+                
+                flightNr.text = data.flightNr
+                gateNr.text = data.gateNr
+                
+                departingFrom.text = data.departingFrom
+                arrivingTo.text = data.arrivingTo
+                
+                flightStatus.text = data.flightStatus
+                
             }
             
             // schedule next flight
@@ -95,5 +113,41 @@ class ViewController: UIViewController, UITextFieldDelegate {
             options: .CurveEaseOut, animations: {
                 self.snowView.alpha = showEffects ? 1.0 : 0.0
             }, completion: nil)
+    }
+    
+    enum AnimationDirection: Int {
+        case Positive = 1
+        case Negative = -1
+    }
+    
+    func cubeTransition(label label: UILabel, text: String, direction: AnimationDirection) {
+        
+        let auxLabel = UILabel(frame: label.frame)
+        auxLabel.text = text
+        auxLabel.font = label.font
+        auxLabel.textAlignment = label.textAlignment
+        auxLabel.textColor = label.textColor
+        auxLabel.backgroundColor = label.backgroundColor
+        
+        let auxLabelOffset = CGFloat(direction.rawValue) *
+            label.frame.size.height / 2
+        
+        auxLabel.transform = CGAffineTransformConcat(
+            CGAffineTransformMakeScale(1.0, 0.1),
+            CGAffineTransformMakeTranslation(0.0, auxLabelOffset))
+        
+        label.superview!.addSubview(auxLabel)
+        
+        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseOut,
+            animations: {
+                auxLabel.transform = CGAffineTransformIdentity
+                label.transform = CGAffineTransformConcat(
+                    CGAffineTransformMakeScale(1.0, 0.1),
+                    CGAffineTransformMakeTranslation(0.0, -auxLabelOffset))
+            }, completion: {_ in
+                label.text = auxLabel.text
+                label.transform = CGAffineTransformIdentity
+                auxLabel.removeFromSuperview()
+        })
     }
 }
