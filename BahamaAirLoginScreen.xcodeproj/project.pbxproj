@@ -12,6 +12,8 @@
 		4C60A55F1C1F371E00510FF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C60A55D1C1F371E00510FF2 /* Main.storyboard */; };
 		4C60A5611C1F371E00510FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C60A5601C1F371E00510FF2 /* Assets.xcassets */; };
 		4C60A5641C1F371E00510FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4C60A5621C1F371E00510FF2 /* LaunchScreen.storyboard */; };
+		4C9FC0B61C3DAA64004AB7FD /* SnowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FC0B51C3DAA64004AB7FD /* SnowView.swift */; };
+		4C9FC0B81C3DAA91004AB7FD /* FlightData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9FC0B71C3DAA91004AB7FD /* FlightData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		4C60A5601C1F371E00510FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4C60A5631C1F371E00510FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4C60A5651C1F371E00510FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4C9FC0B51C3DAA64004AB7FD /* SnowView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SnowView.swift; sourceTree = "<group>"; };
+		4C9FC0B71C3DAA91004AB7FD /* FlightData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlightData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +58,7 @@
 		4C60A5581C1F371E00510FF2 /* BahamaAirLoginScreen */ = {
 			isa = PBXGroup;
 			children = (
+				4C9FC0B41C3DAA40004AB7FD /* Classes */,
 				4C60A5591C1F371E00510FF2 /* AppDelegate.swift */,
 				4C60A55B1C1F371E00510FF2 /* ViewController.swift */,
 				4C60A55D1C1F371E00510FF2 /* Main.storyboard */,
@@ -62,6 +67,15 @@
 				4C60A5651C1F371E00510FF2 /* Info.plist */,
 			);
 			path = BahamaAirLoginScreen;
+			sourceTree = "<group>";
+		};
+		4C9FC0B41C3DAA40004AB7FD /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4C9FC0B51C3DAA64004AB7FD /* SnowView.swift */,
+				4C9FC0B71C3DAA91004AB7FD /* FlightData.swift */,
+			);
+			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +152,8 @@
 			files = (
 				4C60A55C1C1F371E00510FF2 /* ViewController.swift in Sources */,
 				4C60A55A1C1F371E00510FF2 /* AppDelegate.swift in Sources */,
+				4C9FC0B61C3DAA64004AB7FD /* SnowView.swift in Sources */,
+				4C9FC0B81C3DAA91004AB7FD /* FlightData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,6 +305,7 @@
 				4C60A56A1C1F371E00510FF2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
