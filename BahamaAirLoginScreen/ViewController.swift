@@ -160,8 +160,11 @@ class ViewController: UIViewController, UITextFieldDelegate {
     func showMessage(index index: Int){
         label.text = messages[index]
         
-        UIView.transitionWithView(status, duration: 0.33, options: [.CurveEaseOut, .TransitionCurlDown], animations: {
-            self.status.hidden = false
+        //changed transition to TransitionFlipFromBottom... this transition presents the banner smooth/clean
+        UIView.transitionWithView(status, duration: 0.33,
+            options: [.CurveEaseOut, .TransitionFlipFromLeft],
+            animations: {
+                self.status.hidden = false
             }, completion: {_ in
                 //transition completion
                 delay(seconds: 0.2) {
