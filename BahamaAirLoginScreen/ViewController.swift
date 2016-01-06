@@ -9,13 +9,20 @@
 import UIKit
 import QuartzCore
 
-// A delay function
-func delay(seconds seconds: Double, completion:()->()){
-    let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds))
+//
+// Util delay function
+//
+func delay(seconds seconds: Double, completion:()->()) {
+    let popTime = dispatch_time(DISPATCH_TIME_NOW, Int64( Double(NSEC_PER_SEC) * seconds ))
     
     dispatch_after(popTime, dispatch_get_main_queue()) {
         completion()
     }
+}
+
+enum AnimationDirection: Int {
+    case Positive = 1
+    case Negative = -1
 }
 
 class ViewController: UIViewController, UITextFieldDelegate {
@@ -61,10 +68,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             
             // populate the UI with the next flight's data
             summary.text = data.summary
-            flightNr.text = data.flightNr
-            gateNr.text = data.gateNr
-            departingFrom.text = data.departingFrom
-            arrivingTo.text = data.arrivingTo
             flightStatus.text = data.flightStatus
             
             if animated {
@@ -80,6 +83,19 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 cubeTransition(label: gateNr, text: data.gateNr,
                     direction: direction)
                 
+                let offsetDeparting = CGPoint(
+                    x: CGFloat(direction.rawValue * 80),
+                    y: 0.0)
+                moveLabel(departingFrom, text: data.departingFrom,
+                    offset: offsetDeparting)
+                
+                let offsetArriving = CGPoint(
+                    x: 0.0,
+                    y: CGFloat(direction.rawValue * 50))
+                moveLabel(arrivingTo, text: data.arrivingTo,
+                    offset: offsetArriving)
+                
+                
             } else {
                 bgImageView.image = UIImage(named: data.weatherImageName)
                 snowView.hidden = !data.showWeatherEffects
@@ -92,6 +108,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 
                 flightStatus.text = data.flightStatus
                 
+                
+                
             }
             
             // schedule next flight
@@ -100,6 +118,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     parisToRome: austinToParis, animated: true)
             }
     }
+    
     
     
     func fadeImageView(imageView: UIImageView, toImage: UIImage, showEffects: Bool) {
@@ -115,11 +134,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
             }, completion: nil)
     }
     
-    enum AnimationDirection: Int {
-        case Positive = 1
-        case Negative = -1
-    }
-    
     func cubeTransition(label label: UILabel, text: String, direction: AnimationDirection) {
         
         let auxLabel = UILabel(frame: label.frame)
@@ -127,10 +141,13 @@ class ViewController: UIViewController, UITextFieldDelegate {
         auxLabel.font = label.font
         auxLabel.textAlignment = label.textAlignment
         auxLabel.textColor = label.textColor
-        auxLabel.backgroundColor = label.backgroundColor
+        
+        // use a clear background for label
+        //        auxLabel.backgroundColor = label.backgroundColor
+        auxLabel.backgroundColor = UIColor.clearColor()
         
         let auxLabelOffset = CGFloat(direction.rawValue) *
-            label.frame.size.height / 2
+            label.frame.size.height/2.0
         
         auxLabel.transform = CGAffineTransformConcat(
             CGAffineTransformMakeScale(1.0, 0.1),
@@ -138,16 +155,53 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         label.superview!.addSubview(auxLabel)
         
-        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseOut,
-            animations: {
-                auxLabel.transform = CGAffineTransformIdentity
-                label.transform = CGAffineTransformConcat(
-                    CGAffineTransformMakeScale(1.0, 0.1),
-                    CGAffineTransformMakeTranslation(0.0, -auxLabelOffset))
+        UIView.animateWithDuration(0.5, delay: 0.0, options: .CurveEaseOut, animations: {
+            auxLabel.transform = CGAffineTransformIdentity
+            label.transform = CGAffineTransformConcat(
+                CGAffineTransformMakeScale(1.0, 0.1),
+                CGAffineTransformMakeTranslation(0.0, -auxLabelOffset))
             }, completion: {_ in
                 label.text = auxLabel.text
                 label.transform = CGAffineTransformIdentity
+                
                 auxLabel.removeFromSuperview()
+        })
+        
+    }
+    
+    
+    func moveLabel(label: UILabel, text: String, offset: CGPoint) {
+        
+        let auxLabel = UILabel(frame: label.frame)
+        auxLabel.text = text
+        auxLabel.font = label.font
+        auxLabel.textAlignment = label.textAlignment
+        auxLabel.textColor = label.textColor
+        auxLabel.backgroundColor = UIColor.clearColor()
+        
+        auxLabel.transform = CGAffineTransformMakeTranslation(offset.x, offset.y)
+        auxLabel.alpha = 0
+        view.addSubview(auxLabel)
+        
+        UIView.animateWithDuration(0.5, delay: 0.0,
+            options: .CurveEaseIn, animations: {
+                label.transform = CGAffineTransformMakeTranslation(
+                    offset.x, offset.y)
+                label.alpha = 0.0
+            }, completion: nil)
+        
+        UIView.animateWithDuration(0.25, delay: 0.1,
+            options: .CurveEaseIn, animations: {
+                auxLabel.transform = CGAffineTransformIdentity
+                auxLabel.alpha = 1.0
+                
+            }, completion: {_ in
+                //clean up
+                auxLabel.removeFromSuperview()
+                
+                label.text = text
+                label.alpha = 1.0
+                label.transform = CGAffineTransformIdentity
         })
     }
 }
