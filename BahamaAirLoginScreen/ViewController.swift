@@ -48,7 +48,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         spinner.frame = CGRect(x: -20.0, y: 6.0, width: 20.0, height: 20.0)
         spinner.startAnimating()
         spinner.alpha = 0.0
-        loginButton.addSubview(status)
+        loginButton.addSubview(spinner)
         
         status.hidden = true
         status.center = loginButton.center
@@ -120,9 +120,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
     @IBAction func login(sender: UIButton) {
         view.endEditing(true)
         
+        //1st user interaction animation: button grows & bounces
         UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: {
             self.loginButton.bounds.size.width += 80.0
             }, completion: nil)
+        
+        //2nd user interaction animation: button moves down 60 points
+        UIView.animateWithDuration(0.33, delay: 0.0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
+            self.loginButton.center.y += 60.0
+            }, completion: nil)
+        
+        //3rd user interaction animation: animate button's background color tint
+        self.loginButton.backgroundColor = UIColor(red: 0.85, green: 0.83, blue: 0.45, alpha: 1.0)
+        
+        //4th user interaction animation: activity indicator spinner appears
+        self.spinner.center = CGPoint(x: 40.0,
+            y: self.loginButton.frame.size.height/2)
+        self.spinner.alpha = 1.0
+        
     }
     
     // MARK: UITextFieldDelegate
@@ -133,4 +148,3 @@ class ViewController: UIViewController, UITextFieldDelegate {
     }
     
 }
-
