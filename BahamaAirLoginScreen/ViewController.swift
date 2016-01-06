@@ -162,7 +162,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         
         //changed transition to TransitionFlipFromBottom... this transition presents the banner smooth/clean
         UIView.transitionWithView(status, duration: 0.33,
-            options: [.CurveEaseOut, .TransitionFlipFromTop],
+            options: [.CurveEaseOut, .TransitionFlipFromBottom],
             animations: {
                 self.status.hidden = false
             }, completion: {_ in
