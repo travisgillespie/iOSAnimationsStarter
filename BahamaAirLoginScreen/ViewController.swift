@@ -106,9 +106,8 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.cloud4.alpha = 1.0
             }, completion: nil)
         
-        UIView.animateWithDuration(3.0, delay: 0.5,
-            //change in the initial velocity creates more bounce at the beginning
-            usingSpringWithDamping: 0.1, initialSpringVelocity: 1.0,
+        UIView.animateWithDuration(0.5, delay: 0.5,
+            usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0,
             options: [],
             animations: {
                 self.loginButton.center.y -= 30.0
@@ -120,6 +119,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // MARK: further methods
     @IBAction func login(sender: UIButton) {
         view.endEditing(true)
+        
+        UIView.animateWithDuration(1.5, delay: 0.0, usingSpringWithDamping: 0.2, initialSpringVelocity: 0.0, options: [], animations: {
+            self.loginButton.bounds.size.width += 80.0
+            }, completion: nil)
     }
     
     // MARK: UITextFieldDelegate
