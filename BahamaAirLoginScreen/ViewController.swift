@@ -81,7 +81,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.username.center.x += self.view.bounds.width
             }, completion: nil)
         
-        UIView.animateWithDuration(0.5, delay: 0.4, options: [.Repeat, .Autoreverse], animations: {
+        UIView.animateWithDuration(0.5, delay: 0.4, options: [.Repeat, .Autoreverse, .CurveEaseOut], animations: {
             self.password.center.x += self.view.bounds.width
             }, completion: nil)
     }
