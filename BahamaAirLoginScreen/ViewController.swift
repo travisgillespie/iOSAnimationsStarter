@@ -106,9 +106,9 @@ class ViewController: UIViewController, UITextFieldDelegate {
             self.cloud4.alpha = 1.0
             }, completion: nil)
         
-        //change in duration = 3.0 and damping = 0.1... these valuse cause slow motion effect
         UIView.animateWithDuration(3.0, delay: 0.5,
-            usingSpringWithDamping: 0.1, initialSpringVelocity: 0.0,
+            //change in the initial velocity creates more bounce at the beginning
+            usingSpringWithDamping: 0.1, initialSpringVelocity: 1.0,
             options: [],
             animations: {
                 self.loginButton.center.y -= 30.0
