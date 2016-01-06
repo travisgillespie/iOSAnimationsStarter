@@ -67,11 +67,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
         animated: Bool = false){
             
             // populate the UI with the next flight's data
-            summary.text = data.summary
-            flightStatus.text = data.flightStatus
             
             if animated {
                 planeDepart()
+                switchSummaryTo(data.summary)
                 fadeImageView(bgImageView,
                     toImage: UIImage(named: data.weatherImageName)!,
                     showEffects: data.showWeatherEffects)
@@ -108,8 +107,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                 arrivingTo.text = data.arrivingTo
                 
                 flightStatus.text = data.flightStatus
-                
-                
+                summary.text = data.summary
                 
             }
             
@@ -203,7 +201,6 @@ class ViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    //challenge 1: banner animation
     func bannerLabelTransition(label label: UILabel, text: String, direction: AnimationDirection){
         let auxLabel = UILabel(frame: label.frame)
         auxLabel.text = text
@@ -267,5 +264,27 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     self.planeImage.center = originalCenter
                 }
             }, completion: nil)
+    }
+    
+    //    019 challenge: add KeyframeAnimation to update the Flight Summary Status Bar
+    func switchSummaryTo(summaryText: String){
+        UIView.animateKeyframesWithDuration(1.5, delay: 0.0,
+            options: [], animations: {
+                UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.45,
+                    animations: {
+                        self.summary.center.y -= 40.0
+                })
+                UIView.addKeyframeWithRelativeStartTime(0.45, relativeDuration: 0.01, animations: {
+                    
+                })
+                UIView.addKeyframeWithRelativeStartTime(0.75, relativeDuration: 0.45, animations: {
+                    self.summary.center.y += 40.0
+                })
+            }, completion: nil)
+        
+        delay(seconds: 0.75, completion: {
+            self.summary.text = summaryText
+        })
+        
     }
 }
